@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/Store';
+import Shipments from './views/Shipments';
+import Dispatches from './views/Dispatches';
+import Landing from './views/Landing';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/shipments' element={<Shipments />} />
+            <Route path='/dispatches' element={<Dispatches />} />
+            <Route path='/' element={<Landing />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }
 
 export default App;
+
+/*<Route
+              path='/admin/dashboard'
+              element={
+                <PrivateRoute
+                  component={AdminPage}
+                  role='admin'
+                />
+              }
+            />*/
