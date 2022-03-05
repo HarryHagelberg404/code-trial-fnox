@@ -13,11 +13,12 @@ export default function Navbar() {
             </Link>
           </div>
           <div className='nav_box_counter_div'>
-            
+            <h1>Icon</h1>
+            <h1>Icon</h1>
           </div>
         </div>
         <div className='nav_links'>
-          <Link to='/' className='nav_link'>Harry Carrier</Link>
+          <Link to='/' className='nav_link'>Home</Link>
           <Link to='/shipments' className='nav_link'>Shipments</Link>
           <Link to='/dispatches' className='nav_link'>Dispatches</Link>
         </div>

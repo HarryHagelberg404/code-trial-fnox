@@ -6,17 +6,18 @@
 .App {
   text-align: center;
   color: black;
-  background-color: #6418bb;
+  //background-color: #6418bb;
   min-width: 100vw;
   min-height: 100vh;
 }
 
 .nav {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  width: 80%;
+  width: 100%;
   .nav_header {
     width: 100vw;
     height: 100pt;
+    background-color: #6418bb;
+    color: white;
     display: flex;
     -moz-box-shadow:    3px 3px 5px 2px rgb(17, 17, 17);
     -webkit-box-shadow: 3px 3px 5px 2px rgb(17, 17, 17);
@@ -25,7 +26,7 @@
       width: 35%;
       background-color: white;
       margin-left: -25px;
-      box-shadow:       3px 3px 5px 2px rgb(17, 17, 17);
+      box-shadow:       0px 0px 0px 2px rgb(17, 17, 17);
       -webkit-transform: skew(-20deg);
       -moz-transform: skew(-20deg);
       -o-transform: skew(-20deg);
@@ -43,15 +44,55 @@
     }
   }
   .nav_links {
+    margin-top: 5pt;
+    width: 100vw;
+    height: 20pt;
     display: flex;
-    align-items: flex-start;
-    flex-wrap: nowrap;
+    //align-items: flex-start;
+    //flex-wrap: nowrap;
     justify-content: space-evenly;
     text-align: center;
     .nav_link {
-      color: white;
+      color: rgb(80, 78, 78);
       text-decoration: none;
       font-size: 20pt;
+      transition: 0.5s;
     }
+    .nav_link:hover {
+      transform: scale(1.2);
+      transition: 0.5s;
+      color: rgb(8, 238, 8);
+    }
+  }
+}
+
+.main {
+  width: 100vw;
+  height: 100vh;
+  background-color: hotpink;
+  margin-top: 10pt;
+  .landing_div {
+    width: 50%;
+    padding: 5px;
+    margin-left: 25%;
+    background-color: rgb(151, 151, 151);
+    .landing_header {
+      font-size: 30pt;
+    }
+    .landing_paragraf {
+      text-align: left;
+    }
+  }
+}
+
+.shipments {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .shipments_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
