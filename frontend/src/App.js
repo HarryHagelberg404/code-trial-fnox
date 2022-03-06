@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './store/Store';
 import Shipments from './views/Shipments';
 import Dispatches from './views/Dispatches';
-import Landing from './views/Landing';
 
 function App() {
   return (
@@ -12,9 +11,8 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path='/shipments' element={<Shipments />} />
+            <Route path='/' element={<Shipments />} />
             <Route path='/dispatches' element={<Dispatches />} />
-            <Route path='/' element={<Landing />} />
           </Routes>
         </BrowserRouter>
       </Provider>
