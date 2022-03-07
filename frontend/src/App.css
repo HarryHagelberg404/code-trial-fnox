@@ -50,10 +50,12 @@
 .nav .nav_link {
   transition: 0.5s;
   text-decoration: none;
+  color: black;
 }
 .nav .nav_link:hover {
   transition: 0.5s;
   transform: scale(1.1);
+  color: #700b79;
 }
 .nav .nav_title {
   flex-grow: 1;

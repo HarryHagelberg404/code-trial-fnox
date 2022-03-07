@@ -2,11 +2,12 @@ import React from 'react';
 import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import { Link } from 'react-router-dom';
-// Logged in?
-
 import logo from '../resources/nav_box.jpg';
+import { useSelector } from 'react-redux';
 
 export default function Navbar() {
+  const shipments = useSelector((state) => state.shipments);
+
   return (
     <>
       <AppBar position='fixed' className='nav' color='inherit'>
@@ -19,11 +20,13 @@ export default function Navbar() {
           </Link>
           <div className='nav_grow'/>
           <div className='nav_button'>
-            <IconButton aria-label='Show dispatches' color='inherit'>
-              <Badge badgeContent={2} color='secondary'>
-                <LocalShippingIcon />
-              </Badge>
-            </IconButton>
+            <Link to='/dispatches' className='nav_link'>
+              <IconButton aria-label='Show dispatches' color='inherit'>
+                <Badge badgeContent={shipments.newShipments.length} color='secondary'>
+                  <LocalShippingIcon />
+                </Badge>
+              </IconButton>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
