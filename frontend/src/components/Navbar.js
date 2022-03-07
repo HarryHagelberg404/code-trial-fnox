@@ -13,7 +13,7 @@ export default function Navbar() {
         <Toolbar>
           <Link to='/' className='nav_link'>
             <Typography variant='h6' className='nav_title' color='inherit'>
-            < img src={logo} alt='Box Bros' height='50px' className='nav_image'/>
+            <img src={logo} alt='Box Bros' height='50px' className='nav_image'/>
               Box Bros Inc
             </Typography>
           </Link>
@@ -26,7 +26,6 @@ export default function Navbar() {
             </IconButton>
           </div>
         </Toolbar>
-
       </AppBar>
       
     </>
