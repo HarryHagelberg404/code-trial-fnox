@@ -22,7 +22,7 @@ export default function Navbar() {
           <div className='nav_button'>
             <Link to='/dispatches' className='nav_link'>
               <IconButton aria-label='Show dispatches' color='inherit'>
-                <Badge badgeContent={shipments.newShipments.length} color='secondary'>
+                <Badge badgeContent={shipments.new} color='secondary'>
                   <LocalShippingIcon />
                 </Badge>
               </IconButton>

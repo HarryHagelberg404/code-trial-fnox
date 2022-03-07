@@ -20,6 +20,7 @@ export default function WeightInput() {
           label="Weight"
           required
           id="shipment_weight"
+          name='weight'
           value={weight}
           onChange={handleChange('weight')}
           sx={{ m: 1, width: '25ch' }}

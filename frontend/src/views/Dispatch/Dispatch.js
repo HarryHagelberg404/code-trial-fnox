@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, CardContent, Typography } from '@material-ui/core';
-
+import { Card, CardContent, CardActions, IconButton, Typography } from '@material-ui/core';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Dispatch({ dispatch }) {
 
@@ -44,6 +44,11 @@ export default function Dispatch({ dispatch }) {
           <Typography variant="body2" color="textSecondary">
             color: {dispatch.color}
           </Typography>
+          <CardActions disableSpacing className='dispatch_delete_content'>
+            <IconButton aria-label='dispatch delete' className="dispatch_delete_icon">
+              <DeleteIcon className='dispatch_delete_button'/>
+            </IconButton>
+          </CardActions>
         </CardContent>
       </Card>
     </>

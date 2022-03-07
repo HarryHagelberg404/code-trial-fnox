@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { TextField } from "@material-ui/core";
-import Select from '@material-ui/core/Select'
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-//import { addNameInput } from "../../store/actions/NameInput";
-//import { assignNameTrue, assignNameFalse } from "../../store/actions/NameAssigned";
 
 const countries = [
   {
@@ -42,6 +39,7 @@ export default function CountryInput() {
         required
         id='shipment_country'
         label='Destination'
+        name='country'
         value={country}
         onChange={handleChange}
         helperText='Please select destination'

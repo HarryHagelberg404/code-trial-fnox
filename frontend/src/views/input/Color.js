@@ -8,7 +8,7 @@ import "@simonwep/pickr/dist/themes/classic.min.css";
 
 export default function ColorInput() {
   const dispatch = useDispatch();
-  const color = useSelector((state) => state.boxColorInput);
+  const [color, setColor] = useState('#3faf2a');
   
   useEffect(() => {
     const pickr = Pickr.create({
@@ -37,11 +37,12 @@ export default function ColorInput() {
       let color;
       if (args[0] === null) {
         //Dispatch remove?
-        console.log("hej")
+        setColor('255, 255, 255');
       } else {
         color = pickr.getSelectedColor().toRGBA();
         color = color.splice(0, 3).toString();
         console.log(color);
+        setColor(color);
         // Dispatch add?
       }
     });
@@ -52,10 +53,11 @@ export default function ColorInput() {
      <label>Box color:</label>
       <div className="color-div">
         <div className="color-picker"></div>
-        <input type="hidden" name="color-input" value={color} />
+        <input type="hidden" name="color" value={color} />
         <input
           className="color-box"
           type="text"
+          name='color'
           readOnly={true}
           style={{ background: `rgb(${color})` }}
         />

@@ -24,6 +24,10 @@
 .shipment_country_input {
   text-align: left;
 }
+.shipment_add_button:hover {
+  transition: 0.3s;
+  color: #3faf2a;
+}
 .dispatches {
   width: 90%;
   margin-left: 5%;
@@ -43,19 +47,30 @@
 .dispatches .dispatch:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
+.dispatches .dispatch_delete_content {
+  display: flex;
+  justify-content: flex-end;
+}
+.dispatches .dispatch_delete_content .dispatch_delete_icon {
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-top: -50px;
+}
+.dispatches .dispatch_delete_content .dispatch_delete_icon:hover {
+  transition: 0.3s;
+  color: red;
+}
 .nav {
   box-shadow: 'none';
   border-bottom: 1px solid black;
 }
 .nav .nav_link {
-  transition: 0.5s;
+  transition: 0.3s;
   text-decoration: none;
   color: black;
 }
 .nav .nav_link:hover {
-  transition: 0.5s;
   transform: scale(1.1);
-  color: #700b79;
+  color: #3faf2a;
 }
 .nav .nav_title {
   flex-grow: 1;

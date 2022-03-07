@@ -13,6 +13,7 @@ export default function NameInput() {
         sx={{ m: 1, width: '25ch' }}
         id='shipment_name'
         label='Receiver'
+        name='name'
         defaultValue='John Doe'
       />
     </>
