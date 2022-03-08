@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/navigation/Navbar';
 import { Grid, Typography, IconButton, } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
-import { addShipment } from '../store/actions/Shipment';
+import { addBox } from '../store/actions/Boxes';
 
-// Components
-import NameInput from './input/Name';
-import WeightInput from './input/Weight';
-import CountryInput from './input/Country';
-import ColorInput from './input/Color';
+import NameInput from '../components/input/Name';
+import WeightInput from '../components/input/Weight';
+import CountryInput from '../components/input/Country';
+import ColorInput from '../components/input/Color';
 
-export default function Shipments() {
+export default function AddBoxesPage() {
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.shipments.error);
-  const input = useSelector((state) => state.input)
+  const error = useSelector((state) => state.boxes.error);
 
   const [messageTitle, setMessageTitle] = useState('Info');
   const [message, setMessage] = useState('Please fill in all information before submit');
@@ -55,7 +53,7 @@ export default function Shipments() {
     };
     try {
       // fix
-      const response = await dispatch(addShipment(shipmentData));
+      const response = await dispatch(addBox(shipmentData));
       console.log(response)
       dispatch(response)
       console.log(error)
@@ -64,13 +62,13 @@ export default function Shipments() {
         setMessageTitle('Error');
         setMessage(
           `Sorry, we unfortunately received a ${error.toLowerCase()}.
-          \nThis shipment will be added once the problem is resolved.`
+          \nThis box will be added once the problem is resolved.`
         );
       }
       else {
         setSeverity('success');
         setMessageTitle('Success');
-        setMessage('The shipment was successfully created');
+        setMessage('The box was successfully created');
       }
     } catch (err) {
       setSeverity('error');
@@ -80,12 +78,16 @@ export default function Shipments() {
     }
   }
 
+  useEffect(() => {
+    
+  }, [error]);
+
   return(
       <>
         <Navbar />
         <div className='main'>
           <Typography variant="h5">
-            Create a shipment
+            Add a box
           </Typography>
           <Stack sx={{ alignItems: 'center' }}>
             <Alert severity={severity}>
@@ -112,13 +114,3 @@ export default function Shipments() {
       </>
   );
 }
-
- //setMessageTitle('This is an error alert');
-    //setMessage('Error')
-    //setSeverity('error');
-    //setMessageTitle('Success');
-    //setMessage('This is a success message')
-    //setSeverity('success');
-    //setMessageTitle('Warning');
-    //setMessage('This is a warning message')
-    //setSeverity('warning');

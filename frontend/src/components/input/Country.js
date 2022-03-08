@@ -1,27 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
 import { TextField } from "@material-ui/core";
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-
-const countries = [
-  {
-    value: 'SWE',
-    label: 'Sweden',
-  },
-  {
-    value: 'CHI',
-    label: 'China',
-  },
-  {
-    value: 'BRA',
-    label: 'Brazil',
-  },
-  {
-    value: 'AUS',
-    label: 'Austrailia',
-  }
-]
+import { countries } from '../../constants/Countries'
 
 export default function CountryInput() {
   const [country, setCountry] = useState('Sweden');
@@ -33,11 +14,11 @@ export default function CountryInput() {
       sx={{ m: 1, width: '25ch' }}
     >
       <TextField
-        className='shipment_country_input'
+        className='box_country_input'
         fullWidth
         select
         required
-        id='shipment_country'
+        id='box_country'
         label='Destination'
         name='country'
         value={country}

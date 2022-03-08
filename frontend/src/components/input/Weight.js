@@ -3,9 +3,6 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Alert } from '@mui/material';
 
-//import { addNameInput } from "../../store/actions/NameInput";
-//import { assignNameTrue, assignNameFalse } from "../../store/actions/NameAssigned";
-
 export default function WeightInput({ setValidWeight }) {
   const [value, setValue] = useState(''); 
   const [message, setMessage] = useState('');
@@ -47,7 +44,7 @@ export default function WeightInput({ setValidWeight }) {
         <TextField
           label="Weight"
           required
-          id="shipment_weight"
+          id="box_weight"
           name='weight'
           value={value}
           onChange={handleChange}

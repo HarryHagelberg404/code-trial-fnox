@@ -14,8 +14,8 @@ const initialState = {
 }
 
 // Testing reducer
-ShipmentReducer(initialState, {
-  type: 'ADD_SHIPMENT_SUCCESS',
+BoxesReducer(initialState, {
+  type: 'ADD_BOX_SUCCESS',
   payload: {
     name: 'matty',
     weight: 2,
@@ -24,26 +24,26 @@ ShipmentReducer(initialState, {
   }
 })
 
-export function ShipmentReducer(state = initialState, action) {
+export function BoxesReducer(state = initialState, action) {
   console.log(action.type)
   switch (action.type) {
-    case 'CLEAR_NEW_SHIPMENTS':
+    case 'CLEAR_NEW_BOX':
       return {
         ...state,
         new: action.payload,
       }
-    case 'GET_SHIPMENTS_SUCCESS':
-    case 'ADD_SHIPMENT_SUCCESS':
-    case 'DELETE_SHIPMENT_SUCCESS':
+    case 'GET_BOXES_SUCCESS':
+    case 'ADD_BOX_SUCCESS':
+    case 'DELETE_BOX_SUCCESS':
       console.log(action.payload)
       return {
         ...state,
         new: state.new++,
         booked: {...action.payload, ...{id: nextShipmentId(state)}},
       }
-    case 'GET_SHIPMENTS_ERROR':
-    case 'ADD_SHIPMENT_ERROR':
-    case 'DELETE_SHIPMENT_ERROR':
+    case 'GET_BOXES_ERROR':
+    case 'ADD_BOX_ERROR':
+    case 'DELETE_BOX_ERROR':
       return {
         ...state,
         error: action.payload,

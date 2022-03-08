@@ -28,7 +28,7 @@ export default function NameInput({ setValidName }) {
         fullWidth
         required
         sx={{ m: 1, width: '25ch' }}
-        id='shipment_name'
+        id='box_name'
         label='Receiver'
         name='name'
         inputProps={{maxLength: maxLength}}

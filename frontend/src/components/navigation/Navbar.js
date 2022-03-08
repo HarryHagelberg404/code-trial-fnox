@@ -1,13 +1,13 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Badge, MenuItem, Menu, Typography } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Badge, Typography } from '@material-ui/core';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Link } from 'react-router-dom';
-import logo from '../resources/nav_box.jpg';
+import logo from '../../resources/nav_box.jpg';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {
-  const shipments = useSelector((state) => state.shipments);
+  const booked = useSelector((state) => state.boxes.booked);
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function Navbar() {
           <div className='nav_button'>
             <Link to='/listboxes' className='nav_link'>
               <IconButton aria-label='Show dispatches' color='inherit'>
-                <Badge badgeContent={shipments.new} color='secondary'>
+                <Badge badgeContent={booked.new} color='secondary'>
                   <LocalShippingIcon />
                 </Badge>
               </IconButton>

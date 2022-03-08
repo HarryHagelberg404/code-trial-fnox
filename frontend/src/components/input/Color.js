@@ -11,14 +11,16 @@ import { Alert } from '@mui/material';
 export default function ColorInput({ setValidColor }) {;
   const [color, setColor] = useState('#3faf2a');
   const [message, setMessage] = useState('');
-  const blueStart = 190;
-  const blueRange = 60;
+  const hueStart = 190;
+  const hueRange = 60;
+  const saturationMax = 30;
+  const valueMax = 20;
 
   const isBlueColor = (hsvArray) => {
     const hValue = hsvArray[0];
-    if (hValue > blueStart && hValue < (blueStart + blueRange)) {
+    if (hValue > hueStart && hValue < (hueStart + hueRange)) {
       // Blue hValue but we need to check for black/white value
-      if(hsvArray[1] < 30 || hsvArray[2] < 20) {
+      if(hsvArray[1] < saturationMax || hsvArray[2] < valueMax) {
         return false;
       }
       return true;
@@ -85,12 +87,3 @@ export default function ColorInput({ setValidColor }) {;
     </>
   );
 }
-
-/*
-        <input
-          className="color-box"
-          type="text"
-          readOnly={true}
-          style={{ background: `rgb(${color})` }}
-        />
-*/

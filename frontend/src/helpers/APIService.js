@@ -4,25 +4,25 @@ const URL = process.env.SERVER_ENDPOINT || 'https://localhost:4000';
 const API_KEY = process.env.API_KEY || 'test1337';
 
 export const APIService = {
-  async getShipments() {
+  async getBoxes() {
     try {
-      const response = await axios.get(`${URL}/api/shipment/getShipments`);
+      const response = await axios.get(`${URL}/api/box/getBoxes`);
       return response;
     } catch (err) {
       throw err
     }
   },
 
-  async addShipment(shipment) {
+  async addBox(box) {
     try {
-      const shipmentAsFormData = new FormData();
-      shipmentAsFormData.append('name', shipment.name);
-      shipmentAsFormData.append('weight', shipment.weight);
-      shipmentAsFormData.append('color', shipment.color);
-      shipmentAsFormData.append('country', shipment.country);
+      const boxAsFormData = new FormData();
+      boxAsFormData.append('name', box.name);
+      boxAsFormData.append('weight', box.weight);
+      boxAsFormData.append('color', box.color);
+      boxAsFormData.append('country', box.country);
       const response = await axios.post(
-        `${URL}/api/shipment/createShipment`,
-        shipmentAsFormData,
+        `${URL}/api/box/createBox`,
+        boxAsFormData,
         { headers: { 'Content-Type': 'multipart/form-data' } }
       );
       return response
@@ -31,10 +31,10 @@ export const APIService = {
     }
   },
 
-  async deleteShipment(shipmentId) {
+  async deleteShipment(boxId) {
     try {
       const response = axios.delete(
-        `${URL}/api/shipment/delete/${shipmentId}`
+        `${URL}/api/box/delete/${boxId}`
       );
       return response
     } catch (err) {
