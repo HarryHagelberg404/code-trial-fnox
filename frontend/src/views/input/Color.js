@@ -5,9 +5,23 @@ import "@simonwep/pickr/dist/themes/classic.min.css";
 import { Typography } from "@material-ui/core";
 import { Alert } from '@mui/material';
 
+// Comparing color with help from table: http://en.wikipedia.org/wiki/HSL_and_HSV
+// Specified a "blue range" and then converts to HSV and check the first value.
+
 export default function ColorInput({ setValidColor }) {;
   const [color, setColor] = useState('#3faf2a');
   const [message, setMessage] = useState('');
+  const blueStart = 190;
+  const blueRange = 60;
+
+  const isBlueColor = (hsvArray) => {
+    const hValue = hsvArray[0]
+    console.log(hValue)
+    if (hValue > blueStart && hValue < (blueStart + blueRange)) {
+      return true;
+    }
+    return false;
+  }
   
   useEffect(() => {
     const pickr = Pickr.create({
@@ -36,6 +50,10 @@ export default function ColorInput({ setValidColor }) {;
       if (args[0] === null) {
         setValidColor(false);
         setMessage('You must submit a valid color - Please fix');
+        setColor('');
+      } else if (isBlueColor(pickr.getSelectedColor().toHSVA())) {
+        setValidColor(false);
+        setMessage('You are not allowed to submit any blue color - Please fix');
         setColor('');
       } else {
         color = pickr.getSelectedColor().toRGBA();
