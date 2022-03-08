@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-//import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { Grid, Typography, IconButton, } from '@material-ui/core';
 import Box from '@mui/material/Box';
@@ -8,7 +7,6 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
-import { APIService } from '../helpers/APIService';
 import { addShipment } from '../store/actions/Shipment';
 
 // Components
@@ -17,42 +15,72 @@ import WeightInput from './input/Weight';
 import CountryInput from './input/Country';
 import ColorInput from './input/Color';
 
-const formIndex = {
-  name: 0,
-  weight: 2,
-  color: 5,
-  country: 7,
-}
-
 export default function Shipments() {
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.shipments.error);
+  const input = useSelector((state) => state.input)
   // State
+  //const [buttonLock, setButtonLock] = useState(true);
   const [messageTitle, setMessageTitle] = useState('Info');
-  const [message, setMessage] = useState('Please fill all information before submit');
+  const [message, setMessage] = useState('Please fill in all information before submit');
   const [severity, setSeverity] = useState('info')
+  const [validName, setValidName] = useState(false);
+  const [validWeight, setValidWeight] = useState(false);
+  const [validColor, setValidColor] = useState(false);
 
   // Local new shipping count
+  const validInput = () => {
+    console.log(validName, validWeight)
+    if (!validName || !validWeight) {
+      //setButtonLock(false);
+      setSeverity('error');
+      setMessageTitle('Error');
+      setMessage(
+        `Sorry, seems that you have information to correct or forgot to fill in.
+        \nPlease correct and try again.`
+      );
+      return false
+    }
+    return true;
+  }
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!validInput()) {
+      return;
+    } 
     const data = new FormData(event.target)
     const shipmentData = {
-      name: data.get('name'),
-      weight: data.get('weight'),
+      name: data.get('name').trim(),
+      weight: Number(data.get('weight')),
       color: data.get('color'),
       country: data.get('country'),
     };
     try {
-      await dispatch(addShipment(shipmentData));
-      setSeverity('success');
-      setMessageTitle('Success');
-      setMessage('The shipment was successfully created');
+      // fix
+      const response = await dispatch(addShipment(shipmentData));
+      console.log(response)
+      dispatch(response)
+      console.log(error)
+      if (error !== null) {
+        setSeverity('error');
+        setMessageTitle('Error');
+        setMessage(
+          `Sorry, we unfortunately received a ${error.toLowerCase()}.
+          \nThis shipment will be added once the problem is resolved.`
+        );
+      }
+      else {
+        setSeverity('success');
+        setMessageTitle('Success');
+        setMessage('The shipment was successfully created');
+      }
     } catch (err) {
       setSeverity('error');
       setMessageTitle('Error');
       console.log(err)
       setMessage(err.toString());
-    }   
+    }
   }
 
   return(
@@ -74,8 +102,8 @@ export default function Shipments() {
             noValidate
             >
             <Grid container direction='column' justifyContent='center' alignItems='center' className='shipments_form'>
-                <NameInput />
-                <WeightInput />
+                <NameInput setValidName={setValidName}/>
+                <WeightInput setValidWeight={setValidWeight} />
                 <ColorInput />
                 <CountryInput />
                 <IconButton aria-label='Add shipment' color='inherit' type='submit'>

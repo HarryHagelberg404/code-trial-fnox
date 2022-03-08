@@ -1,27 +1,28 @@
 import { APIService } from "../../helpers/APIService";
 
 export const getShipments = () => {
-  return async () => {
+  return new Promise(async (resolve) => {
     try {
       const { data } = await APIService.getShipments();
-      return({
+      resolve({
         type: 'GET_SHIPMENTS_SUCCESS',
         payload: data,
       });
       
     } catch(err) {
-      return({
+      resolve({
         type: 'GET_SHIPMENTS_ERROR',
         payload: err.message,
       });
     }
-  };
+  });
 }
 
 export const addShipment = (shipment) => {
   return async () => {
+    console.log(shipment)
     try {
-      APIService.addShipment(shipment);
+      await APIService.addShipment(shipment);
       const { data } = await APIService.getShipments();
       return({
         type: 'ADD_SHIPMENT_SUCCESS',
@@ -39,7 +40,7 @@ export const addShipment = (shipment) => {
 export const deleteShipment = (shipmentId) => {
   return async () => {
     try {
-      APIService.deleteShipment(shipmentId);
+      await APIService.deleteShipment(shipmentId);
       const { data } = await APIService.getShipments();
       return({
         type: 'DELETE_SHIPMENT_SUCCESS',

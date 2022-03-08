@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 // Color picker found at: https://github.com/Simonwep/pickr
 import Pickr from "@simonwep/pickr";
 import "@simonwep/pickr/dist/themes/classic.min.css";
+import { Typography } from "@material-ui/core";
 
 export default function ColorInput() {
   const dispatch = useDispatch();
@@ -50,18 +51,20 @@ export default function ColorInput() {
 
   return (
     <>
-     <label>Box color:</label>
+      <Typography variant="body2" color="textSecondary">Box color:</Typography>
       <div className="color-div">
         <div className="color-picker"></div>
         <input type="hidden" name="color" value={color} />
-        <input
-          className="color-box"
-          type="text"
-          name='color'
-          readOnly={true}
-          style={{ background: `rgb(${color})` }}
-        />
       </div>
     </>
   );
 }
+
+/*
+        <input
+          className="color-box"
+          type="text"
+          readOnly={true}
+          style={{ background: `rgb(${color})` }}
+        />
+*/

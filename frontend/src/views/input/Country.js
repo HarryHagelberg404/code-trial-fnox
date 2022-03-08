@@ -24,7 +24,7 @@ const countries = [
 ]
 
 export default function CountryInput() {
-  const [country, setCountry] = useState('SWE');
+  const [country, setCountry] = useState('Sweden');
   const handleChange = (event) => setCountry(event.target.value);
 
   return (
@@ -46,7 +46,7 @@ export default function CountryInput() {
       >
         {countries.map((option) => {
           return (
-          <MenuItem key={option.value} value={option.value} >
+          <MenuItem key={option.value} value={option.label} >
             {option.label}
           </MenuItem>
           );

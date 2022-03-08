@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 //import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { Grid, Typography } from '@material-ui/core';
-import { clearNewShipments, getShipments } from '../store/actions/Shipment';
+import { clearNewShipments, deleteShipment, getShipments } from '../store/actions/Shipment';
 import Dispatch from './Dispatch/Dispatch';
 import { useDispatch, useSelector } from 'react-redux';
 import Alert from '@mui/material/Alert';
@@ -12,7 +12,8 @@ import Stack from '@mui/material/Stack';
 
 export default function Shipments() {
   const dispatch = useDispatch();
-  const shipments = useSelector((state) => state.shipments);
+  const dispatches = useSelector((state) => state.shipments.booked);
+  const error = useSelector((state) => state.shipments.error);
   const [messageTitle, setMessageTitle] = useState('Info');
   const [message, setMessage] = useState(`
     If an error would occur, your latest data is still available. 
@@ -25,32 +26,23 @@ export default function Shipments() {
   const fetchDispatches = async () => {
     // TODO: FIX THIS
     // ---
-    const response = await dispatch(getShipments());
-    dispatch(response);
+    dispatch(await getShipments());
     // ---
-    console.log(response)
-    console.log(shipments.error)
-    if (shipments.error !== null) {
+    // Doesn't work when 'error hasnt been updated'
+    if (error !== null) {
       setSeverity('error');
       setMessageTitle('Error');
       setMessage(
-        `Sorry, we unfortunately received a ${shipments.error.toLowerCase()}
+        `Sorry, we unfortunately received a ${error.toLowerCase()}.
         \nBeware: You are looking at old data.`
       );
     }
   }
 
-  const clearNewDispatches = () => {
-    const response = dispatch(clearNewShipments);
-    dispatch(response);
-  }
-
-  useEffect(async() => {
-    fetchDispatches().then(() => {
-      clearNewDispatches();
-    });
-        
-  }, [dispatch]);
+  useEffect(() => {
+    dispatch(clearNewShipments());    
+    fetchDispatches()
+  }, []);
 
   const calculateShipping = (dispatches) => {
     let cost = 0
@@ -73,6 +65,19 @@ export default function Shipments() {
     return cost.toFixed(2);
   }
 
+  const handleDeleteDispatch = async (dispatchId) => {
+    const response = await dispatch(deleteShipment(dispatchId));
+    dispatch(response);
+    if (error !== null) {
+      setSeverity('error');
+      setMessageTitle('Error');
+      setMessage(
+        `Sorry, we unfortunately received a ${error.toLowerCase()}.
+        \nWe could not delete this dispatch.`
+      );
+    }
+  }
+
   return(
       <>
         <Navbar />
@@ -84,7 +89,7 @@ export default function Shipments() {
                     Outgoing dispatches
                   </Typography>
                   <Typography variant="h6">
-                    Total sum of shipping fees: {calculateShipping(shipments.booked)} kr
+                    Total sum of shipping fees: {calculateShipping(dispatches)} kr
                   </Typography>
                   <Alert severity={severity}>
                     <AlertTitle>{messageTitle}</AlertTitle>
@@ -93,9 +98,9 @@ export default function Shipments() {
                 </Stack>
               </div>
               <Grid container justifyContent='center' spacing={4}>
-                {shipments.booked.map((dispatch) => (
+                {dispatches.map((dispatch) => (
                   <Grid item key={dispatch.id} xs={12} sm={6} md={4} lg={3}>
-                    <Dispatch dispatch={dispatch} />
+                    <Dispatch dispatch={dispatch} onDeleteDispatch={handleDeleteDispatch}/>
                   </Grid>
                 ))}
               </Grid>

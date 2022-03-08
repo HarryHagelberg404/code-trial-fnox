@@ -12,15 +12,9 @@
 .main {
   margin-top: 75px;
 }
-/*
 .shipments_form {
-  input[type='text'],
-  input[type='number'],
-  select {
-    width: 100%;
-  }
+  margin-top: 30px;
 }
-*/
 .shipment_country_input {
   text-align: left;
 }
