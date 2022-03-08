@@ -6,9 +6,9 @@ function nextShipmentId(shipments) {
 const initialState = {
   new: 3,
   booked: [
-    { id: 1, name: 'hatty', weight: 20, color: 'black', country: 'Sweden'},
-    { id: 2, name: 'matty', weight: 15, color: 'blue', country: 'China'},
-    { id: 3, name: 'marty', weight: 2, color: 'green', country: 'Brazil'},
+    { id: 1, name: 'hatty', weight: 20, color: '51, 231, 229', country: 'Sweden'},
+    { id: 2, name: 'matty', weight: 15, color: '213, 54, 149', country: 'China'},
+    { id: 3, name: 'marty', weight: 2, color: '213, 54, 149', country: 'Brazil'},
   ],
   error: null
 }

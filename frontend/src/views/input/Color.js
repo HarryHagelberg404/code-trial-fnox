@@ -15,9 +15,12 @@ export default function ColorInput({ setValidColor }) {;
   const blueRange = 60;
 
   const isBlueColor = (hsvArray) => {
-    const hValue = hsvArray[0]
-    console.log(hValue)
+    const hValue = hsvArray[0];
     if (hValue > blueStart && hValue < (blueStart + blueRange)) {
+      // Blue hValue but we need to check for black/white value
+      if(hsvArray[1] < 30 || hsvArray[2] < 20) {
+        return false;
+      }
       return true;
     }
     return false;
