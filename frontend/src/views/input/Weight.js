@@ -8,30 +8,25 @@ import { Alert } from '@mui/material';
 
 export default function WeightInput({ setValidWeight }) {
   const [message, setMessage] = useState('');
-  const [severity, setSeverity] = useState('');
   const maxLength = 10;
 
   const handleChange = (event) => {
     if (event.target.value.trim() === '') {
-      setSeverity('warning')
       setMessage('You cant leave the weight input blank - Please fix');
       return;
     }
+    const weight = Number(event.target.value)
     if (weight.toString() === 'NaN') {
-      setSeverity('warning')
       setMessage('You cant submit anything other than a valid number - Please fix');
       setValidWeight(false);
     } else if (weight > 200) {
-      setSeverity('warning')
       setMessage('You cant submit anything over 200 kg - Please fix');
       setValidWeight(false);
     } else if (weight < 0.2) {
-      setSeverity('warning')
       setMessage('You cant submit anything lighter than 0.2 kg - Please fix');
       setValidWeight(false);
     } else {
       setMessage('');
-      setSeverity('');
       setValidWeight(true); 
     }
   };
@@ -41,7 +36,7 @@ export default function WeightInput({ setValidWeight }) {
       {message.length <= 0 ?
         ''
       :
-        <Alert severity={severity}>{message}</Alert>
+        <Alert severity='warning'>{message}</Alert>
       }
         <TextField
           label="Weight"

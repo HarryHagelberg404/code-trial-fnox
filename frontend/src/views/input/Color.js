@@ -1,15 +1,13 @@
-import { useSelector, useDispatch } from "react-redux";
 import React, { useState, useEffect } from "react";
-//import { addNameInput } from "../../store/actions/NameInput";
-//import { assignNameTrue, assignNameFalse } from "../../store/actions/NameAssigned";
 // Color picker found at: https://github.com/Simonwep/pickr
 import Pickr from "@simonwep/pickr";
 import "@simonwep/pickr/dist/themes/classic.min.css";
 import { Typography } from "@material-ui/core";
+import { Alert } from '@mui/material';
 
-export default function ColorInput() {
-  const dispatch = useDispatch();
+export default function ColorInput({ setValidColor }) {;
   const [color, setColor] = useState('#3faf2a');
+  const [message, setMessage] = useState('');
   
   useEffect(() => {
     const pickr = Pickr.create({
@@ -34,23 +32,30 @@ export default function ColorInput() {
       },
     });
     pickr.on("save", (...args) => {
-      // If user clears the chosen color
       let color;
       if (args[0] === null) {
-        //Dispatch remove?
-        setColor('255, 255, 255');
+        setValidColor(false);
+        setMessage('You must submit a valid color - Please fix');
+        setColor('');
       } else {
         color = pickr.getSelectedColor().toRGBA();
         color = color.splice(0, 3).toString();
-        console.log(color);
-        setColor(color);
-        // Dispatch add?
+        let colorArr = JSON.parse('[' + color + ']')
+        colorArr = colorArr.map(val => val.toFixed(3));
+        setValidColor(true)
+        setMessage('');
+        setColor(colorArr.toString());
       }
     });
   }, []);
 
   return (
     <>
+      {message.length <= 0 ?
+        ''
+      :
+        <Alert severity='warning'>{message}</Alert>
+      }
       <Typography variant="body2" color="textSecondary">Box color:</Typography>
       <div className="color-div">
         <div className="color-picker"></div>

@@ -19,20 +19,17 @@ export default function Shipments() {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.shipments.error);
   const input = useSelector((state) => state.input)
-  // State
-  //const [buttonLock, setButtonLock] = useState(true);
+
   const [messageTitle, setMessageTitle] = useState('Info');
   const [message, setMessage] = useState('Please fill in all information before submit');
   const [severity, setSeverity] = useState('info')
   const [validName, setValidName] = useState(false);
   const [validWeight, setValidWeight] = useState(false);
-  const [validColor, setValidColor] = useState(false);
+  const [validColor, setValidColor] = useState(true);
 
   // Local new shipping count
   const validInput = () => {
-    console.log(validName, validWeight)
-    if (!validName || !validWeight) {
-      //setButtonLock(false);
+    if (!validName || !validWeight || !validColor) {
       setSeverity('error');
       setMessageTitle('Error');
       setMessage(
@@ -104,7 +101,7 @@ export default function Shipments() {
             <Grid container direction='column' justifyContent='center' alignItems='center' className='shipments_form'>
                 <NameInput setValidName={setValidName}/>
                 <WeightInput setValidWeight={setValidWeight} />
-                <ColorInput />
+                <ColorInput setValidColor={setValidColor}/>
                 <CountryInput />
                 <IconButton aria-label='Add shipment' color='inherit' type='submit'>
                   <AddBoxIcon className='shipment_add_button' />

@@ -5,18 +5,15 @@ import { Alert } from '@mui/material';
 
 export default function NameInput({ setValidName }) {
   const [message, setMessage] = useState('');
-  const [severity, setSeverity] = useState('');
   const maxLength = 20;
 
   const handleChange = (event) => {
     const input = event.target.value.trim();
     if (input === '') {
-      setSeverity('warning')
       setMessage('You cant submit a blank receiver - Please fix');
       setValidName(false);
     } else {
       setMessage('');
-      setSeverity('');
       setValidName(true);
     }
   }
@@ -25,7 +22,7 @@ export default function NameInput({ setValidName }) {
       {message.length <= 0 ?
         ''
       :
-        <Alert severity={severity}>{message}</Alert>
+        <Alert severity='warning'>{message}</Alert>
       }
       <TextField
         fullWidth
