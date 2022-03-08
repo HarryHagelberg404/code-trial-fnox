@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import { IconButton, TableCell, TableHead, Typography } from '@material-ui/core';
 import { clearNewShipments, deleteShipment, getShipments } from '../store/actions/Shipment';
-//import Dispatch from './Dispatch/Dispatch';
 import { useDispatch, useSelector } from 'react-redux';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from '@mui/material/Alert';

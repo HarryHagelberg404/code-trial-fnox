@@ -1,18 +1,20 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/Store';
 import Shipments from './views/Shipments';
 import Dispatches from './views/Dispatches';
 
 function App() {
+
   return (
     <div className="App">
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Shipments />} />
-            <Route path='/dispatches' element={<Dispatches />} />
+            <Route path='/' element={<Navigate replace to='/addboxes' />}/>
+            <Route path='/addboxes' element={<Shipments />} />
+            <Route path='/listboxes' element={<Dispatches />} />
           </Routes>
         </BrowserRouter>
       </Provider>
@@ -21,13 +23,3 @@ function App() {
 }
 
 export default App;
-
-/*<Route
-              path='/admin/dashboard'
-              element={
-                <PrivateRoute
-                  component={AdminPage}
-                  role='admin'
-                />
-              }
-            />*/
