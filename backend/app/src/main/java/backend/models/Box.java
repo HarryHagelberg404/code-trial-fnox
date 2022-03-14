@@ -2,16 +2,18 @@ package backend.models;
 
 public class Box {
 
+  private int id;
   private String name;
   private int weight;
   private String color;
   private String country;
 
-  public Box(String name, int weight, String color, String country) {
-    this.name = name;
-    this.weight = weight;
-    this.color = color;
-    this.country = country;
+  public int getId() {
+    return this.id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName() {

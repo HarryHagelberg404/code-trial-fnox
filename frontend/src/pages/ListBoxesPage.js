@@ -71,20 +71,6 @@ export default function ListBoxesPage() {
     // errors in useeffect
   }, [error, boxes]);
 
-  const handleDeleteBox = async (boxId) => {
-    // FIx
-    const response = await dispatch(deleteBox(boxId));
-    dispatch(response);
-    if (error !== null) {
-      setSeverity('error');
-      setMessageTitle('Error');
-      setMessage(
-        `Sorry, we unfortunately received a ${error.toLowerCase()}.
-        \nWe could not delete this dispatch.`
-      );
-    }
-  }
-
   return(
       <>
         <Navbar />

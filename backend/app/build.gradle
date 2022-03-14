@@ -17,12 +17,6 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
-configurations {
-  compileOnly {
-    extendsFrom annotationProcessor
-  }
-}
-
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -30,17 +24,12 @@ repositories {
 
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    runtimeOnly 'io.r2dbc:r2dbc-postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'org.postgresql:postgresql'
-    //runtimeOnly 'com.h2database:h2'
-    //runtimeOnly 'io.r2dbc:r2dbc-h2'
-    //runtimeOnly 'io.r2dbc:r2dbc-postgresql'
-    //runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
 }

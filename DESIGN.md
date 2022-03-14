@@ -30,3 +30,5 @@ If I had more time I would convert my application into docker images to be kuber
 In the beginning of the development I was building the application with CRUD functionality in mind but ended up settling for only "add box" and "list boxes".  
 
 As I couldnt take use of ORM i couldnt take use of jpa.. And ended up writing blocking code.. Didnt have time to solve and wasnt sure of what i where allowed to take use of so ended up using the plain mysql driver
+
+If i would have more time i would have implemented HATEOAS support

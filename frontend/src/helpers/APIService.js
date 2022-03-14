@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = process.env.SERVER_ENDPOINT || 'http://localhost:4000';
+const URL = process.env.SERVER_ENDPOINT || 'http://localhost:8081';
 
 export const APIService = {
   async getBoxes() {
