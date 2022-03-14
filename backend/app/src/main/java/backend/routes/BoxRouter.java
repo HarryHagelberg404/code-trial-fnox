@@ -8,6 +8,7 @@ import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import backend.handlers.BoxHandler;
+import backend.services.BoxService;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
@@ -17,10 +18,12 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 public class BoxRouter {
 
   @Bean
-  public RouterFunction<ServerResponse> route(BoxHandler boxHandler) {
+  public RouterFunction<ServerResponse> route() {
+    BoxService boxService = new BoxService();
+    BoxHandler boxHandler = new BoxHandler(boxService);
 
     return RouterFunctions
-      .route(GET("/listboxes").and(accept(MediaType.APPLICATION_JSON)), boxHandler::listBoxes)
-      .andRoute(POST("/addbox").and(accept(MediaType.MULTIPART_FORM_DATA)), boxHandler::addBox);
+      .route(GET("/boxes").and(accept(MediaType.APPLICATION_JSON)), boxHandler::listBoxes)
+      .andRoute(POST("/boxes").and(accept(MediaType.APPLICATION_JSON)), boxHandler::addBox);
   }
 }

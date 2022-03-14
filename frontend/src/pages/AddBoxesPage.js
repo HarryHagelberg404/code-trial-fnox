@@ -28,8 +28,8 @@ export default function AddBoxesPage() {
   // Local new shipping count
   const validInput = () => {
     if (!validName || !validWeight || !validColor) {
-      setSeverity('error');
-      setMessageTitle('Error');
+      setSeverity('warning');
+      setMessageTitle('Warning');
       setMessage(
         `Sorry, seems that you have information to correct or forgot to fill in.
         \nPlease correct and try again.`

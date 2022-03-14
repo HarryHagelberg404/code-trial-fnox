@@ -102,7 +102,6 @@ export default function ListBoxesPage() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell key='del'>Delete</TableCell>
                     {columns.map((col) => {
                       return <TableCell key={col.field}>{col.headerName}</TableCell>
                     })}
@@ -112,11 +111,6 @@ export default function ListBoxesPage() {
                   {boxes.map((box) => {
                     return(
                     <TableRow key={box.id}>
-                      <TableCell>
-                        <IconButton aria-label='dispatch delete' onClick={() => handleDeleteBox(dispatch.id)} className="dispatch_delete_icon">
-                          <DeleteIcon className='dispatch_delete_button'/>
-                        </IconButton>
-                      </TableCell>
                       <TableCell style={{ lineBreak: 'auto' }}>{dispatch.name}</TableCell>
                       <TableCell>{box.weight} kg</TableCell>
                       <TableCell

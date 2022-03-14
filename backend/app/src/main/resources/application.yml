@@ -1,3 +1,5 @@
+server.port: 8081
+
 spring:
   profiles:
     active: dev
@@ -5,9 +7,9 @@ spring:
 spring:
   profiles: dev
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/test
+    url: r2dbc:postgresql://localhost:5432/codetrial
     username: postgres
-    password: postgres
+    password: docker
 logging:
   level:
     org.springframework.data.r2dbc: Debug
@@ -17,14 +19,14 @@ spring:
   r2dbc:
     url: r2dbc:h2:mem:///test?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     name: sa
-    password:
+    password: mysecretpassword
 ---
 spring:
   profiles: prod
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/test
-    username: postgres
-    password: postgres
+    url: r2dbc:postgresql://localhost:5432/codetrial
+    username: docker
+    password: codetrial
   logging:
     level:
       org.springframework.data.r2dbc: Debug

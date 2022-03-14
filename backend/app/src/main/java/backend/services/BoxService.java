@@ -1,19 +1,25 @@
 package backend.services;
 
-import reactor.core.publisher.Mono;
-import reactor.core.publisher.Flux;
-import backend.Box;
-import backend.repository.BoxRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import backend.models.Box;
+import backend.repository.BoxRepository;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Service
 public class BoxService {
 
-  private BoxRepository boxRepository;
+  private final BoxRepository boxRepository;
 
   public Flux<Box> listBoxes() {
-    return boxRepository.getAllBoxes();
+    return boxRepository.findAll();
   }
 
-  public <Mono>Box addNewBox(Box box) {
-    return boxRepository.saveBox(box);
+  public Mono<Box> addNewBox(final Box box) {
+    System.out.println(boxRepository);
+    System.out.println("DÅ");
+    return boxRepository.save(box);
   }
 }

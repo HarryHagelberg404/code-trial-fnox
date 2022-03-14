@@ -13,6 +13,9 @@ export default function WeightInput({ setValidWeight }) {
     if (event.target.value.trim() === '') {
       setMessage('You cant leave the weight input blank - Please fix');
       //return;
+    } else if (event.target.value.length > 8) {
+      setMessage('You cant submit a number this precise - Please fix');
+      setValidWeight(false);
     } else if (weight.toString() === 'NaN') {
       setMessage('You cant submit anything other than a valid number - Please fix');
       setValidWeight(false);

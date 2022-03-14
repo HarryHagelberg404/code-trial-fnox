@@ -1,3 +1,5 @@
+# Design
+
 ## Application Design
 
 To structure the project I decided I would separate the different components of the application into three, frontend, backend as well as database. I've included a segment of the 'PLAN.md' to elaborate my thoughts on how i deployed the application. As I wanted to make the application available both locally aswell as remote.
@@ -22,3 +24,9 @@ certs
 multiple hosts
 
 If I had more time I would convert my application into docker images to be kubernetes compliant as it's widely used in the corporate world.
+
+
+
+In the beginning of the development I was building the application with CRUD functionality in mind but ended up settling for only "add box" and "list boxes".  
+
+As I couldnt take use of ORM i couldnt take use of jpa.. And ended up writing blocking code.. Didnt have time to solve and wasnt sure of what i where allowed to take use of so ended up using the plain mysql driver
