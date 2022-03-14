@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppBar, Toolbar, IconButton, Badge, Typography } from '@material-ui/core';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -7,7 +7,11 @@ import logo from '../../resources/nav_box.jpg';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {
-  const booked = useSelector((state) => state.boxes.booked);
+  const newBoxes = useSelector((state) => state.boxes.new);
+
+  useEffect(() => {
+    console.log(newBoxes)
+  }, [newBoxes]);
 
   return (
     <>
@@ -30,7 +34,7 @@ export default function Navbar() {
           <div className='nav_button'>
             <Link to='/listboxes' className='nav_link'>
               <IconButton aria-label='Show dispatches' color='inherit'>
-                <Badge badgeContent={booked.new} color='secondary'>
+                <Badge badgeContent={newBoxes} color='secondary'>
                   <LocalShippingIcon />
                 </Badge>
               </IconButton>

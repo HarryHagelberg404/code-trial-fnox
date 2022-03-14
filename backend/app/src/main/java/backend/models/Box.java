@@ -4,7 +4,7 @@ public class Box {
 
   private int id;
   private String name;
-  private int weight;
+  private double weight;
   private String color;
   private String country;
 
@@ -24,11 +24,11 @@ public class Box {
     this.name = name;
   }
 
-  public int getWeight() {
+  public double getWeight() {
     return this.weight;
   }
 
-  public void setWeight(int weight) {
+  public void setWeight(double weight) {
     this.weight = weight;
   }
 

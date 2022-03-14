@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navigation/Navbar';
-import { IconButton, TableCell, TableHead, Typography } from '@material-ui/core';
-import { clearNewBoxes, deleteBox, getBoxes } from '../store/actions/Boxes';
+import { TableCell, TableHead, Typography } from '@material-ui/core';
+import { clearNewBoxes, getBoxes } from '../store/actions/Boxes';
 import { useDispatch, useSelector } from 'react-redux';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Stack from '@mui/material/Stack';
@@ -47,16 +46,16 @@ export default function ListBoxesPage() {
   const calculateShipping = (box) => {
     let cost = 0;
     switch(box.country) {  
-      case 'Sweden':
+      case 'SWE':
         cost += box.weight * 1.3;
         break;
-      case 'China':
+      case 'CHI':
         cost += box.weight * 4;
         break;
-      case 'Brazil':
+      case 'BRA':
         cost += box.weight * 8.6;
         break;
-      case 'Austrailia':
+      case 'AUZ':
         cost += box.weight * 7.2;
         break;
     }
@@ -66,10 +65,10 @@ export default function ListBoxesPage() {
   }
 
   useEffect(() => {
-    dispatch(clearNewBoxes());    
-    fetchboxes()
+    fetchboxes();
+    dispatch(clearNewBoxes());  
     // errors in useeffect
-  }, [error, boxes]);
+  }, [error]);
 
   return(
       <>
@@ -113,7 +112,7 @@ export default function ListBoxesPage() {
               </div>
             </div>
             <Typography variant="h6" style={{ marginTop: '20px' }}>
-              Total sum of shipping fees: {sumShippingCost} kr
+              Total sum of shipping fees: {sumShippingCost.toFixed(2)} kr
             </Typography>
             <Typography variant="h6">
               Total sum of shipping weight: {sumShippingWeight} kg

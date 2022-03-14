@@ -14,15 +14,10 @@ export const APIService = {
 
   async addBox(box) {
     try {
-      const boxAsFormData = new FormData();
-      boxAsFormData.append('name', box.name);
-      boxAsFormData.append('weight', box.weight);
-      boxAsFormData.append('color', box.color);
-      boxAsFormData.append('country', box.country);
       const response = await axios.post(
         `${URL}/api/boxes`,
-        boxAsFormData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
+        box,
+        { headers: { 'Content-Type': 'application/json' } }
       );
       return response
     } catch (err) {

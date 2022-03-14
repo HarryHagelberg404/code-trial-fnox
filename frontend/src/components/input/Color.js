@@ -32,7 +32,7 @@ export default function ColorInput({ setValidColor }) {;
     const pickr = Pickr.create({
       el: ".color-picker",
       theme: "classic",
-      default: "#3faf2a",
+      default: "rgb(50, 205, 50)",
 
       components: {
         preview: true,
@@ -66,6 +66,8 @@ export default function ColorInput({ setValidColor }) {;
         let colorArr = JSON.parse('[' + color + ']')
         colorArr = colorArr.map(val => val.toFixed(3));
         setValidColor(true)
+        console.log(colorArr.toString().length);
+        console.log(colorArr.toString())
         setMessage('');
         setColor(colorArr.toString());
       }

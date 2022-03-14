@@ -36,24 +36,6 @@ export const addBox = (box) => {
   };
 };
 
-export const deleteBox = (boxId) => {
-  return async () => {
-    try {
-      await APIService.deleteBox(boxId);
-      const { data } = await APIService.getBoxes();
-      return({
-        type: 'DELETE_BOX_SUCCESS',
-        payload: data,
-      });
-    } catch (err) {
-      return({
-        type: 'DELETE_BOX_ERROR',
-        payload: err.message,
-      });
-    }
-  };
-};
-
 export const clearNewBoxes = () => {
   return({
       type: 'CLEAR_NEW_BOXES',

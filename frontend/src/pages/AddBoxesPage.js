@@ -56,7 +56,6 @@ export default function AddBoxesPage() {
       const response = await dispatch(addBox(shipmentData));
       console.log(response)
       dispatch(response)
-      console.log(error)
       if (error !== null) {
         setSeverity('error');
         setMessageTitle('Error');
