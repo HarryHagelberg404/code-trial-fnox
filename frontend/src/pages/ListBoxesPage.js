@@ -28,11 +28,7 @@ export default function ListBoxesPage() {
   
 
   const fetchboxes = async () => {
-    // TODO: FIX THIS
-    // ---
     dispatch(await getBoxes());
-    // ---
-    // Doesn't work when 'error hasnt been updated'
     if (error !== null) {
       setSeverity('error');
       setMessageTitle('Error');
@@ -96,7 +92,7 @@ export default function ListBoxesPage() {
                   {boxes.map((box) => {
                     return(
                     <TableRow key={box.id}>
-                      <TableCell style={{ lineBreak: 'auto' }}>{dispatch.name}</TableCell>
+                      <TableCell style={{ lineBreak: 'auto' }}>{box.name}</TableCell>
                       <TableCell>{box.weight} kg</TableCell>
                       <TableCell
                         style={{

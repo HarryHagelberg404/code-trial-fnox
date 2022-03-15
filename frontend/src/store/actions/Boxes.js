@@ -1,44 +1,49 @@
 import { APIService } from "../../helpers/APIService";
 
-export const getBoxes = () => {
-  return new Promise(async (resolve) => {
-    try {
-      const { data } = await APIService.getBoxes();
-      resolve({
-        type: 'GET_BOXES_SUCCESS',
-        payload: data,
+export function getBoxes() {
+  return function action(dispatch) {
+
+    const request = APIService.getBoxes();
+
+    return request.then(({ data }) => {
+        dispatch({
+          type: 'GET_BOXES_SUCCESS',
+          payload: data,
+        });
+      }).catch((err) => {
+        dispatch({
+          type: 'GET_BOXES_ERROR',
+          payload: err.message,
+        })
       });
-      
-    } catch(err) {
-      resolve({
-        type: 'GET_BOXES_ERROR',
-        payload: err.message,
-      });
-    }
-  });
+  };
 }
 
-export const addBox = (box) => {
-  return async () => {
-    try {
-      await APIService.addBox(box);
-      const { data } = await APIService.getBoxes();
-      return({
-        type: 'ADD_BOX_SUCCESS',
-        payload: data,
-      });
-    } catch (err) {
-      return({
-        type: 'ADD_BOX_ERROR',
-        payload: err.message,
-      });
-    }
-  };
-};
+export function addBox(box) {
+  return function action(dispatch) {
 
-export const clearNewBoxes = () => {
-  return({
+    const request = APIService.addBox(box);
+
+    request.then(() => {
+        const { data } = APIService.getBoxes();
+        dispatch({
+          type: 'ADD_BOX_SUCCESS',
+          payload: data,
+        });
+      }).catch((err) => {
+        dispatch({
+          type: 'ADD_BOX_ERROR',
+          payload: err.message,
+        });
+      })
+  };
+}
+
+export function clearNewBoxes() {
+  return function action(dispatch) {
+    dispatch({
       type: 'CLEAR_NEW_BOXES',
       payload: 0,
     })
+  }
 }

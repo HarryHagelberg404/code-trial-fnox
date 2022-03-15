@@ -9,7 +9,8 @@ import { Alert } from '@mui/material';
 // Specified a "blue range" and then converts to HSV and check the first value.
 
 export default function ColorInput({ setValidColor }) {;
-  const [color, setColor] = useState('#3faf2a');
+  const startColorString = "50, 205, 50"
+  const [color, setColor] = useState(startColorString);
   const [message, setMessage] = useState('');
   const hueStart = 190;
   const hueRange = 60;
@@ -32,7 +33,7 @@ export default function ColorInput({ setValidColor }) {;
     const pickr = Pickr.create({
       el: ".color-picker",
       theme: "classic",
-      default: "rgb(50, 205, 50)",
+      default: `rgb(${startColorString})`,
 
       components: {
         preview: true,
@@ -66,8 +67,6 @@ export default function ColorInput({ setValidColor }) {;
         let colorArr = JSON.parse('[' + color + ']')
         colorArr = colorArr.map(val => val.toFixed(3));
         setValidColor(true)
-        console.log(colorArr.toString().length);
-        console.log(colorArr.toString())
         setMessage('');
         setColor(colorArr.toString());
       }

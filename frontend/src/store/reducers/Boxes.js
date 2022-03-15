@@ -10,7 +10,6 @@ const initialState = {
 }
 
 export function BoxesReducer(state = initialState, action) {
-  console.log(action.type)
   switch (action.type) {
     case 'CLEAR_NEW_BOXES':
       return {

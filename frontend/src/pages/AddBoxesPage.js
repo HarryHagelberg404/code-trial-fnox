@@ -25,7 +25,6 @@ export default function AddBoxesPage() {
   const [validWeight, setValidWeight] = useState(false);
   const [validColor, setValidColor] = useState(true);
 
-  // Local new shipping count
   const validInput = () => {
     if (!validName || !validWeight || !validColor) {
       setSeverity('warning');
@@ -52,19 +51,8 @@ export default function AddBoxesPage() {
       country: data.get('country'),
     };
     try {
-      // fix
-      const response = await dispatch(addBox(shipmentData));
-      console.log(response)
-      dispatch(response)
-      if (error !== null) {
-        setSeverity('error');
-        setMessageTitle('Error');
-        setMessage(
-          `Sorry, we unfortunately received a ${error.toLowerCase()}.
-          \nThis box will be added once the problem is resolved.`
-        );
-      }
-      else {
+      dispatch(addBox(shipmentData));
+      if(error === null) {
         setSeverity('success');
         setMessageTitle('Success');
         setMessage('The box was successfully created');
@@ -72,13 +60,23 @@ export default function AddBoxesPage() {
     } catch (err) {
       setSeverity('error');
       setMessageTitle('Error');
-      console.log(err)
       setMessage(err.toString());
     }
   }
 
+  const isError = async () => {
+    if (error !== null) {
+      setSeverity('error');
+      setMessageTitle('Error');
+      setMessage(
+        `Sorry, we unfortunately received a ${error.toLowerCase()}.
+        \nYour boxes will be added once the problem is resolved.`
+      );
+    }
+  }
+
   useEffect(() => {
-    
+    isError();
   }, [error]);
 
   return(

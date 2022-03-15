@@ -10,7 +10,6 @@ export default function Navbar() {
   const newBoxes = useSelector((state) => state.boxes.new);
 
   useEffect(() => {
-    console.log(newBoxes)
   }, [newBoxes]);
 
   return (
@@ -34,7 +33,7 @@ export default function Navbar() {
           <div className='nav_button'>
             <Link to='/listboxes' className='nav_link'>
               <IconButton aria-label='Show dispatches' color='inherit'>
-                <Badge badgeContent={newBoxes} color='secondary'>
+                <Badge badgeContent={newBoxes} role="boxCounter" color='secondary'>
                   <LocalShippingIcon />
                 </Badge>
               </IconButton>
