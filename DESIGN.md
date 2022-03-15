@@ -56,6 +56,6 @@ In the beginning of the development I was building the application with CRUD fun
 
 If I had more time i would develop a functional backend rather than a "blocking" one. And i would also implement HATEOAS support.
 
-Currently in terms of quality and security I have not handled things such as constants as ex. usernames and passwords that would normally exist in .env files. This is bad practice and something I want to fix. I also wanted to deploy the application in a kubernetes cluster but didn't have the time available.
+Currently in terms of quality and security I have not handled things such as constants as ex. usernames and passwords that would normally exist in .env files. This is bad practice and something I want to fix. I also wanted to deploy the application in a kubernetes cluster but didn't have the time available. While speaking in terms of security, I'm not pleased about the outcome of how i handle errors in the backend aspect. I guess I built the functionality first without implementing far too much error handling.
 
 The last thing I can think of is that if I would have more time available is in case of scenarios without network access to backend API have a "spool" state in redux that keeps track of offline actions the user have performed and when network access later becomes available, perform said actions.

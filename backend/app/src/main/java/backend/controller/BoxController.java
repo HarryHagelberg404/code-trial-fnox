@@ -1,5 +1,7 @@
 package backend.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,16 +22,21 @@ public class BoxController {
   private BoxRepository boxRepository = new BoxRepository();
 
   @GetMapping
-  public ArrayList<Box> findAllBoxes() {
-    return boxRepository.listBoxes();
+  public ResponseEntity<ArrayList<Box>> findAllBoxes() {
+    return ResponseEntity.status(HttpStatus.OK).body(boxRepository.listBoxes());
   }
 
   @PostMapping
-  public Box saveBox(@Validated @RequestBody Box box) {
-    try {
-      boxRepository.addNewBox(box);
+  public ResponseEntity<Box> saveBox(@Validated @RequestBody Box box) {
+    try  {
+      if (box.getIsValid()) {
+        boxRepository.addNewBox(box);
+        return ResponseEntity.status(HttpStatus.OK).body(box);
+      } else {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(box);  
+      }
     } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(box);
     }
-    return box;
   }
 }
