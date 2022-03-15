@@ -71,7 +71,7 @@ export default function ColorInput({ setValidColor }) {;
         setColor(colorArr.toString());
       }
     });
-  }, []);
+  }, [setValidColor]);
 
   return (
     <>

@@ -1,8 +1,3 @@
-function nextShipmentId(shipments) {
-  const maxId = shipments.booked.reduce((maxId, shipment) => Math.max(shipment.id, maxId), -1)
-  return maxId + 1
-}
-
 const initialState = {
   new: 0,
   booked: [],
