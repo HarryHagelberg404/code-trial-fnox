@@ -8,18 +8,13 @@ The steps should be performed in documented order in order to work.
   - docker installed.
   - network access (for pulling the docker image and installing dependencies).
 
-# Database: docker run --name myDatabase -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword postgres
-
-docker build -t database ./where dockerfile is
-docker run -d --name db-container -p 5432:5432 database
-
 ## Frontend
 
 - Open up a terminal and change directory to "code-trial-fnox/frontend".
 - Type: "npm install" in the terminal.
 - Type: "npm start" in the terminal.
 
-The frontend should now be started and a web application should now be displayed. 
+The frontend should now be started and a web application should now be displayed.
 
 ## Database
 
